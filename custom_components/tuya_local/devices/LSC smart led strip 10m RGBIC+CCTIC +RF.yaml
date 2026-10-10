@@ -1,0 +1,135 @@
+name: LSC smart led strip 10m RGBIC+CCTIC +RF
+
+entities:
+  - entity: select
+    name: Scene preset
+    dps:
+      - id: 21
+        type: string
+        name: scene_mode
+        hidden: true
+
+      - id: 102
+        type: base64
+        name: option
+        mapping:
+          - dps_val: "ASkCYWHgAABkAAtkAAAAAGQA2WQAAAAAZAArZAAAAABkAJFkAAAAAGQAuWQAAAAA"
+            constraint: scene_mode
+            conditions:
+              - dps_val: scene
+                value: "Kerstmis"
+
+          - dps_val: "AXgFUFAAAAAAAAAAAyAAfwAAAAADOAPo"
+            constraint: scene_mode
+            conditions:
+              - dps_val: scene
+                value: "Witte lint"
+
+          - dps_val: "AXkGUFAAAAAAAAAAAxgAzgAAAAADGAPo"
+            constraint: scene_mode
+            conditions:
+              - dps_val: scene
+                value: "Sneeuwpop"
+
+          - dps_val: "AQAJZGSAAABkAABkAAAAAGQA/mQAAAAA"
+            constraint: scene_mode
+            conditions:
+              - dps_val: scene
+                value: "Police"
+  - entity: light
+    name: Strip
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+
+          - dps_val: colour
+            value: hs
+
+          - dps_val: scene
+            value: Scene
+
+          - dps_val: music
+            value: Music
+
+      # Helderheid voor witmodus.
+      # 10-1000 is een voorlopig bereik.
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+
+      # 0 = warmwit, 1000 = koudwit.
+      # Kelvinwaarden zijn voorlopig, zie uitleg hieronder.
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+
+      # RGB-kleur en RGB-helderheid.
+      - id: 24
+        type: hex
+        name: rgbhsv
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+
+      # Overige DP's: alleen uitleesbare attributen.
+      - id: 26
+        type: integer
+        name: countdown_raw
+        optional: true
+
+      - id: 27
+        type: string
+        name: music_data_raw
+        optional: true
+
+      - id: 52
+        type: base64
+        name: microphone_music_raw
+        optional: true
+
+      - id: 101
+        type: base64
+        name: power_memory_raw
+        optional: true
+
+      - id: 102
+        type: base64
+        name: rgbic_scene_raw
+        optional: true
+
+      - id: 103
+        type: base64
+        name: segment_paint_raw
+        optional: true
+
