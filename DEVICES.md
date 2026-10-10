@@ -999,6 +999,7 @@ of device.
 - LSC Smart Connect garden spotlights and floor lamp
 - LSC Smart Connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others)
 - Lumary D1 6 inch retrofit downlight (independent RGB ring and CCT centre)
+- LSC smart led strip 10m RGBIC+CCTIC +RF (2026)
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Malmbergs QS-WIFI-D02-TRIAC single dimmer module
 - Malmbergs QS-WIFI-D02-TRIAC-2C dual dimmer module
